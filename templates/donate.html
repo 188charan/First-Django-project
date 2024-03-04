@@ -1,0 +1,101 @@
+{% extends "base2.html" %}
+
+{% block title %}Donate{% endblock title %}
+
+{% block style %}
+.donate_form {
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(2, 0.3, 0.5, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #90EE90; /* Light green background color */
+    border: 1px solid #c3e6cb; /* Border color */
+    color: black; /* Text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 15px; /* Rounded corners */
+}
+{% endblock style %} 
+
+
+
+
+{% block body %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="donate_form">
+    <h1>Donate</h1>
+    <form action="/donate" method="post">
+        {% csrf_token %}
+                <input type="text" name="fname" placeholder="First Name" required>
+               <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="text" name="door_number" placeholder="Door Number/House Name" required>
+            <input type="text" name="street" placeholder="Street" required>
+          <input type="text" name="area" placeholder="Area" required>
+          <input type="text" name="city" placeholder="City" required>
+        <select name="food_type" required>
+            <option value="" disabled selected>Select Food Type</option>
+            <option value="veg">Vegetarian</option>
+            <option value="nonveg">Non-Vegetarian</option>
+        </select>
+        <input type="text" name="food_name" placeholder="Food Name" required>
+        <label>Quantity:(Sufficient for approximate number of people)</label>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="tel" name="phone_number" placeholder="Phone Number" required>
+        <input type="submit" value="Donate">
+    </form>
+</div>
+{% endblock body %}

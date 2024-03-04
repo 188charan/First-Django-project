@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}  | Annamrutha</title>
+    <style>
+        {% block style %} {% endblock style %} 
+        /* Resetting default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light gray background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: #333; /* Dark gray navbar */
+            color: #fff;
+            padding: 10px 0;
+            z-index: 1000;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff6600; /* Orange color on hover */
+        }
+
+        .active {
+            color: #ff6600; /* Orange color for active page */
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333; /* Dark gray footer */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+        }
+
+        .logout-button {
+            float : right;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff6600; /* Orange background color */
+            color: #fff; /* White text color */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-button:hover {
+            background-color: #e65c00;
+            color: black; /* Darker orange background color on hover */
+        }
+        
+        .dropdown {
+            float : right;
+        }
+
+
+        /* Style the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #f8965f;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    color: black;
+    position: absolute;
+    background-color: #333;
+    border-radius: 5px;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #3333;
+}
+
+/* Show the dropdown content when the dropdown button is clicked */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="brand">Annamrutha</div>
+        <ul class="nav-links">
+            <li><a href="/donate">Donate</a></li>
+            <li><a href="/order">Order</a></li>
+            <li><a href="/deliver">Delivery</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Welcome {{request.user}}</button>
+                <div class="dropdown-content">
+                    <a href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br><br><br><br>
+<div class="content">
+    <h1>Welcome to Annamrutha!</h1>
+    {% block body %} {% endblock body %} 
+    <!-- Your colorful and eye-catching content here -->
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; Charan</p>
+    </div>
+</footer>
+
+</body>
+</html>

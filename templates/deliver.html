@@ -1,0 +1,136 @@
+{% extends "base2.html" %}
+
+{% block title %}Deliver{% endblock title %}
+
+{% block style %}
+
+.order-form {
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(2, 0.3, 0.5, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #90EE90; /* Light green background color */
+    border: 1px solid #c3e6cb; /* Border color */
+    color: black; /* Text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 15px; /* Rounded corners */
+}
+
+.delivery-list {
+    background-color: #ff9ff9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-table {
+    width: 70%;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+
+.delivery-table th,
+.delivery-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.delivery-table th {
+    background-color: #f981ff;
+}
+{% endblock style %}
+
+{% load filters %}
+
+{% block body %}
+
+<div class="delivery-list">
+    <h2>Delivery List</h2>
+    <table class="delivery-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Food Name</th>
+                <th>Quantity</th>
+                <th>Donor Address</th>
+                <th>Donor Phone</th>
+                <th>Order Address</th>
+                <th>Order Phone</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for donation in donations %}
+                {% with order_details=order_details|get_by_key:donation.id %}
+                {% if order_details %}
+                {% for order_detail in order_details %}
+                <tr>
+                    <td>{{ order_detail.id }}</td>
+                    <td>{{ donation.fname }} {{ donation.lname }}</td>
+                    <td>{{ donation.food_name }}</td>
+                    <td>{{ order_detail.quantity }}</td>
+                    <td>{{ donation.area }} , {{ donation.city }}</td>
+                    <td>{{ donation.phone_number }}</td>
+                    <td>{{ order_detail.area }}, {{ order_detail.city }}</td>
+                    <td>{{ order_detail.phone }}</td>     
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}

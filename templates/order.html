@@ -1,0 +1,160 @@
+{% extends "base2.html" %}
+
+{% block title %}Order{% endblock title %}
+
+{% block style %}
+.order-form {
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(2, 0.3, 0.5, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #90EE90; /* Light green background color */
+    border: 1px solid #c3e6cb; /* Border color */
+    color: black; /* Text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 15px; /* Rounded corners */
+}
+
+.donations-list {
+    background-color: #ff9ff9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.donations-table {
+    width: 70%;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+
+.donations-table th,
+.donations-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.donations-table th {
+    background-color: #f981ff;
+}
+
+.order-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-form h2 {
+    margin-bottom: 20px;
+}
+
+{% endblock style %}
+
+
+
+{% block body %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="donations-list">
+    <h2>Donations List</h2>
+    <table class="donations-table">
+        <thead>
+            <tr>
+                <th>Food ID</th>
+                <th>Name</th>
+                <th>Food Name</th>
+                <th>Quantity</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donation in donations %}
+                <tr>
+                    <td>{{ donation.id }}</td>
+                    <td>{{ donation.fname }} {{ donation.lname }}</td>
+                    <td>{{ donation.food_name }}</td>
+                    <td>{{ donation.quantity }}</td>
+                    <td>{{ donation.area }} , {{ donation.city }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="order-form">
+    <h2>Order Form</h2>
+    <form action="/order" method="post">
+        {% csrf_token %}
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="text" name="food_id" placeholder="Required food id" required>
+        <input type="text" name="door_number" placeholder="Door Number/House Name" required>
+        <input type="text" name="street" placeholder="Street" required>
+        <input type="text" name="area" placeholder="Area" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="tel" name="phone_number" placeholder="Phone Number" required>
+        <input type="submit" value="Order">
+    </form>
+</div>
+
+
+{% endblock body %}

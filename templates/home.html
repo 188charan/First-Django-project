@@ -1,0 +1,132 @@
+ {% extends "base.html" %}
+
+ {% block title %}Home{% endblock title %}
+
+ {% block style %}
+ .container1 {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox for layout */
+}
+
+.left-half {
+    flex: 1; /* Take up half of the container */
+    padding-right: 20px;
+}
+
+.right-half {
+    flex: 1; /* Take up half of the container */
+    padding-left: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.slogan {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.statistic {
+    text-align: center;
+    color: #333;
+}
+
+.statistic h2 {
+    color: #ff6600;
+    margin-bottom: 5px;
+}
+
+.statistic p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e65c00;
+}
+ {% endblock style %}
+
+ {% block body %}
+
+ {% load static %} <!-- Load static template tag -->
+
+ <div class="container1">
+    <div class="left-half">
+        <h1>Food wastage!</h1>
+        <h4>Nearly 40% of food is wasted every day!</h4><br><br>
+        <img src="{% static 'images\Food-Wastage-in-India.webp' %}" width=500px alt="Food wastage">
+    </div>
+    <div class="right-half">
+        <h1>The Hunger!</h1>
+        <h4>Approximately 7000 people are dying due to hunger every day!</h4><br><br>
+        <img src="{% static 'images/hunger.jpg' %}" alt="Hunger">    
+    </div>
+</div>
+
+<div class="statistics">
+    <div class="statistic">
+        <h2>1000+</h2>
+        <p>Happy Customers</p>
+    </div>
+    <div class="statistic">
+        <h2>500+</h2>
+        <p>Projects Completed</p>
+    </div>
+    <div class="statistic">
+        <h2>95%</h2>
+        <p>Customer Satisfaction Rate</p>
+    </div>
+</div>
+
+<div class="button-container">
+    <a href="#" class="button">Learn More</a>
+</div>
+
+ {% endblock body %}

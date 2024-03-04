@@ -1,0 +1,72 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light gray background */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar {
+    background-color: #333; /* Dark gray navbar */
+    color: #fff;
+    padding: 10px 0;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ff6600; /* Orange color on hover */
+}
+
+.active {
+    color: #ff6600; /* Orange color for active page */
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333; /* Dark gray footer */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.8rem;
+}
+

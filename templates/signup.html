@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Sign up{% endblock title %}
+
+{% block style %}
+.signup_form {
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(2, 0.3, 0.5, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333; /* Dark gray text color */
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600; /* Orange submit button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00; /* Darker orange on hover */
+}
+
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #90EE90; /* Light green background color */
+    border: 1px solid #c3e6cb; /* Border color */
+    color: black; /* Text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 15px; /* Rounded corners */
+}
+{% endblock style %}
+
+{% block body %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>Please enter the following details to Sign-up:</h2>
+<div class="signup_form">
+    <h2>Sign up Form</h2>
+    <form action="/signup" method="post">
+        {% csrf_token %}
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Register">
+    </form>
+</div>
+{% endblock body %}
+
